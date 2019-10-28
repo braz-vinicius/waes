@@ -15,24 +15,24 @@ into a Kubernetes Pod for simple and effective horizontal scalability.
 
 
 # How-to build:
-* Open a console and go to the solution folder
-* Enter "dotnet build"
+* Open a console and go to the solution folder.
+* Enter "dotnet build".
 
 # How-to test:
-* Open a console and go to the solution folder
-* Enter "dotnet test" 
+* Open a console and go to the solution folder.
+* Enter "dotnet test" .
 
 # How-to run (Console):
-* Open a console and go to the solution folder
-* Enter "dotnet run"
-* To view all API's resources, open the browser and go to: https://localhost:5001/swagger  or http://localhost:5000/swagger
+* Open a console and go to the solution folder.
+* Enter "dotnet run".
+* To view all API's resources, open the browser and go to: https://localhost:5001/swagger  or http://localhost:5000/swagger.
 
 # How-to run (Docker):
 * You should have Docker installed in your system.
-* Open a console and go to the solution folder
-* Enter "docker build -t waes-api ." 
-* Enter "docker run -d -p 60888:80 -p 44360:443 --name myapp waes-api"
-* To view all API's resources, open the browser and go to: https://localhost:44360/swagger  or http://localhost:60888/swagger
+* Open a console and go to the solution folder.
+* Enter "docker build -t waes-api ." into the console.
+* Enter "docker run -d -p 60888:80 -p 44360:443 --name myapp waes-api" into the console.
+* To view all API's resources, open the browser and go to: https://localhost:44360/swagger  or http://localhost:60888/swagger.
 
 
 # Improvements to be made:
@@ -42,5 +42,5 @@ into a Kubernetes Pod for simple and effective horizontal scalability.
 * Create a robust CI/CD pipeline containing quality gates for tests code coverage.
 
 
-Thank you for evaluating my assessment,
+Thank you for evaluating my assessment,  
 Vinicius Braz
