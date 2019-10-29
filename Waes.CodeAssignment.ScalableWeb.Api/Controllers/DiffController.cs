@@ -31,7 +31,7 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Controllers
         /// <param name="id">Id of the comparison operation</param>
         [HttpPost]
         [Route("/api/v1/[controller]/{id}")]
-        public ActionResult<DiffResultModel> CompareMembers([FromRoute]int id)
+        public ActionResult<DiffResult> CompareMembers([FromRoute]int id)
         {
             var result = diffService.GetBinaryDiffResult(id);
 
@@ -50,7 +50,7 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Controllers
         /// <param name="request">Request object containing binary data encoded as base64 string</param>
         [HttpPost]
         [Route("/api/v1/[controller]/{id}/left")]
-        public ActionResult AddLeftMember([FromRoute]int id, [FromBody]DiffDataRequest request)
+        public ActionResult AddLeftMember([FromRoute]int id, [FromBody]DiffRequest request)
         {
             if (string.IsNullOrEmpty(request.Data) || !IsBase64String(request.Data))
             {
@@ -77,7 +77,7 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Controllers
         /// <param name="request">Request object containing binary data encoded as base64 string</param>
         [HttpPost]
         [Route("/api/v1/[controller]/{id}/right")]
-        public ActionResult AddRightMember([FromRoute]int id, [FromBody]DiffDataRequest request)
+        public ActionResult AddRightMember([FromRoute]int id, [FromBody]DiffRequest request)
         {
             if (string.IsNullOrEmpty(request.Data) || !IsBase64String(request.Data))
             {

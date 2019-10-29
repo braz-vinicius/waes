@@ -32,7 +32,7 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Services
         /// </summary>
         /// <param name="id">id of the operation</param>
         /// <returns></returns>
-        public DiffResultModel GetBinaryDiffResult(int id)
+        public DiffResult GetBinaryDiffResult(int id)
         {
             var entity = repository.Get(x => x.Id == id).SingleOrDefault();
 
@@ -55,12 +55,12 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public DiffResultModel CompareBinaries(int id)
+        public DiffResult CompareBinaries(int id)
         {
 
             var comparisonModel = repository.Get(x => x.Id == id).Single();
             var comparisonResult = binaryComparer.Compare(comparisonModel.LeftMember, comparisonModel.RightMember);
-            var result = new DiffResultModel() { DiffOffsets = comparisonResult.Item2 };
+            var result = new DiffResult() { DiffOffsets = comparisonResult.Item2 };
 
             switch (comparisonResult.Item1)
             {

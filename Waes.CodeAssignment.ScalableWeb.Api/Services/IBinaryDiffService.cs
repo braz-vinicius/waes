@@ -26,6 +26,6 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        DiffResultModel GetBinaryDiffResult(int id);
+        DiffResult GetBinaryDiffResult(int id);
     }
 }

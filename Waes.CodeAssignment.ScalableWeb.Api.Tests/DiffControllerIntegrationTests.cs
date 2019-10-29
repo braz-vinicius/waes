@@ -26,11 +26,11 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Tests
             var testMockOriginal = File.ReadAllBytes("TestData\\waes.bmp");
             var testMockEnlarged = File.ReadAllBytes("TestData\\waes-large.bmp");
 
-            controller.AddLeftMember(testId, new DiffDataRequest { Data = Convert.ToBase64String(testMockOriginal) });
-            controller.AddRightMember(testId, new DiffDataRequest { Data = Convert.ToBase64String(testMockEnlarged) });
+            controller.AddLeftMember(testId, new DiffRequest { Data = Convert.ToBase64String(testMockOriginal) });
+            controller.AddRightMember(testId, new DiffRequest { Data = Convert.ToBase64String(testMockEnlarged) });
 
             var actualResult = controller.CompareMembers(testId);
-            var expectedResult = new DiffResultModel { ComparisonResult = "The binaries have different sizes", DiffOffsets = new List<DiffOffsetModel>() };
+            var expectedResult = new DiffResult { ComparisonResult = "The binaries have different sizes", DiffOffsets = new List<DiffOffset>() };
 
             Assert.AreEqual(expectedResult.ComparisonResult, actualResult.Value.ComparisonResult);
             CollectionAssert.AreEquivalent(expectedResult.DiffOffsets, actualResult.Value.DiffOffsets);
@@ -45,11 +45,11 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Tests
             var testMockOriginal = File.ReadAllBytes("TestData\\waes.bmp");
             var testMockEnlarged = File.ReadAllBytes("TestData\\waes.bmp");
 
-            controller.AddLeftMember(testId, new Models.DiffDataRequest { Data = Convert.ToBase64String(testMockOriginal) });
-            controller.AddRightMember(testId, new Models.DiffDataRequest { Data = Convert.ToBase64String(testMockEnlarged) });
+            controller.AddLeftMember(testId, new Models.DiffRequest { Data = Convert.ToBase64String(testMockOriginal) });
+            controller.AddRightMember(testId, new Models.DiffRequest { Data = Convert.ToBase64String(testMockEnlarged) });
 
             var actualResult = controller.CompareMembers(testId);
-            var expectedResult = new DiffResultModel { ComparisonResult = "The binaries are identical", DiffOffsets = new List<DiffOffsetModel>() };
+            var expectedResult = new DiffResult { ComparisonResult = "The binaries are identical", DiffOffsets = new List<DiffOffset>() };
 
             Assert.AreEqual(expectedResult.ComparisonResult, actualResult.Value.ComparisonResult);
             CollectionAssert.AreEqual(expectedResult.DiffOffsets, actualResult.Value.DiffOffsets);
@@ -65,17 +65,17 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Tests
             var testMockOriginal = File.ReadAllBytes("TestData\\waes.bmp");
             var testMockEnlarged = File.ReadAllBytes("TestData\\waes-inverted.bmp");
 
-            controller.AddLeftMember(testId, new Models.DiffDataRequest { Data = Convert.ToBase64String(testMockOriginal) });
-            controller.AddRightMember(testId, new Models.DiffDataRequest { Data = Convert.ToBase64String(testMockEnlarged) });
+            controller.AddLeftMember(testId, new Models.DiffRequest { Data = Convert.ToBase64String(testMockOriginal) });
+            controller.AddRightMember(testId, new Models.DiffRequest { Data = Convert.ToBase64String(testMockEnlarged) });
 
             var actualResult = controller.CompareMembers(testId);
-            var expectedResult = new DiffResultModel
+            var expectedResult = new DiffResult
             {
                 ComparisonResult = "The binaries are of equal size",
-                DiffOffsets = new List<DiffOffsetModel>() {
-                    new DiffOffsetModel { StartIndex = 74, Length = 1 },
-                    new DiffOffsetModel { StartIndex = 106, Length = 1 },
-                    new DiffOffsetModel { StartIndex = 138, Length = 5712 } }
+                DiffOffsets = new List<DiffOffset>() {
+                    new DiffOffset { StartIndex = 74, Length = 1 },
+                    new DiffOffset { StartIndex = 106, Length = 1 },
+                    new DiffOffset { StartIndex = 138, Length = 5712 } }
             };
 
             Assert.AreEqual(expectedResult.ComparisonResult, actualResult.Value.ComparisonResult);
@@ -88,7 +88,7 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Tests
             var controller = new DiffController(new BinaryDiffService(new BinaryRepository(), new BinaryComparer()));
             int testId = 4;
 
-            var response = controller.AddLeftMember(testId, new DiffDataRequest { Data = "" });
+            var response = controller.AddLeftMember(testId, new DiffRequest { Data = "" });
 
             var actualResult = response as BadRequestResult;
             var expectedResult = new BadRequestResult();
@@ -103,7 +103,7 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Tests
             var controller = new DiffController(new BinaryDiffService(new BinaryRepository(), new BinaryComparer()));
             int testId = 5;
 
-            var response = controller.AddLeftMember(testId, new DiffDataRequest { Data = "InvalidBase64String" });
+            var response = controller.AddLeftMember(testId, new DiffRequest { Data = "InvalidBase64String" });
 
             var actualResult = response as BadRequestResult;
             var expectedResult = new BadRequestResult();
@@ -118,7 +118,7 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Tests
             var controller = new DiffController(new BinaryDiffService(new BinaryRepository(), new BinaryComparer()));
             int testId = 6;
 
-            var response = controller.AddRightMember(testId, new DiffDataRequest { Data = "" });
+            var response = controller.AddRightMember(testId, new DiffRequest { Data = "" });
 
             var actualResult = response as BadRequestResult;
             var expectedResult = new BadRequestResult();
@@ -134,7 +134,7 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Tests
             var controller = new DiffController(new BinaryDiffService(new BinaryRepository(), new BinaryComparer()));
             int testId = 7;
 
-            var response = controller.AddRightMember(testId, new DiffDataRequest { Data = "InvalidBase64String" });
+            var response = controller.AddRightMember(testId, new DiffRequest { Data = "InvalidBase64String" });
 
             var actualResult = response as BadRequestResult;
             var expectedResult = new BadRequestResult();

@@ -8,7 +8,7 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Tests.TestHelpers
 {
     public static class DiffOffSetHelperExtension
     {
-        public static List<string> ToSimpleList(this List<DiffOffsetModel> diffOffset)
+        public static List<string> ToSimpleList(this List<DiffOffset> diffOffset)
         {
             return diffOffset.Select(x => $"{x.StartIndex};{x.Length}").ToList();
 

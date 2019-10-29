@@ -8,7 +8,7 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Models
     /// <summary>
     /// Request that wraps a base64 string encoded binary to be compared
     /// </summary>
-    public class DiffDataRequest
+    public class DiffRequest
     {
         /// <summary>
         /// Base64 string containing the binary data

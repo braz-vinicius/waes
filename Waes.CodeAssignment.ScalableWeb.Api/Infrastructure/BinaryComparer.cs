@@ -25,14 +25,14 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Infrastructure
         /// <param name="left">left array of bytes to compare</param>
         /// <param name="right">right array of bytes to compare</param>
         /// <returns></returns>
-        public Tuple<BinaryComparerEnum, List<DiffOffsetModel>> Compare(byte[] left, byte[] right)
+        public Tuple<BinaryComparerEnum, List<DiffOffset>> Compare(byte[] left, byte[] right)
         {
             int? diffStartIndex = null;
-            List<DiffOffsetModel> offsets = new List<DiffOffsetModel>();
+            List<DiffOffset> offsets = new List<DiffOffset>();
 
             if (left.Length != right.Length)
             {
-                return new Tuple<BinaryComparerEnum, List<DiffOffsetModel>>(BinaryComparerEnum.DifferentSize, offsets);
+                return new Tuple<BinaryComparerEnum, List<DiffOffset>>(BinaryComparerEnum.DifferentSize, offsets);
             }
             else
             {
@@ -46,7 +46,7 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Infrastructure
                     }
                     else if (bytesAreIdentical && diffStartIndex.HasValue)
                     {
-                        offsets.Add(new DiffOffsetModel
+                        offsets.Add(new DiffOffset
                         {
                             StartIndex = diffStartIndex.Value,
                             Length = (i - diffStartIndex.Value)
@@ -58,17 +58,17 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Infrastructure
 
                 if (diffStartIndex.HasValue)
                 {
-                    offsets.Add(new DiffOffsetModel
+                    offsets.Add(new DiffOffset
                     {
                         StartIndex = diffStartIndex.Value,
                         Length = (left.Length - diffStartIndex.Value)
                     });
 
-                    return new Tuple<BinaryComparerEnum, List<DiffOffsetModel>>(BinaryComparerEnum.EqualSize, offsets);
+                    return new Tuple<BinaryComparerEnum, List<DiffOffset>>(BinaryComparerEnum.EqualSize, offsets);
                 }
                 else
                 {
-                    return new Tuple<BinaryComparerEnum, List<DiffOffsetModel>>(BinaryComparerEnum.IdenticalBinary, offsets);
+                    return new Tuple<BinaryComparerEnum, List<DiffOffset>>(BinaryComparerEnum.IdenticalBinary, offsets);
                 }
             }
 

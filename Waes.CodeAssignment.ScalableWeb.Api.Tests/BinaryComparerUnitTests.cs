@@ -24,7 +24,7 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Tests.Unit
             new Random().NextBytes(rightBinary);
 
             var actualResult = binaryComparer.Compare(leftBinary, rightBinary);
-            var expectedResult = new Tuple<BinaryComparerEnum, List<DiffOffsetModel>>(BinaryComparerEnum.DifferentSize, new List<DiffOffsetModel>());
+            var expectedResult = new Tuple<BinaryComparerEnum, List<DiffOffset>>(BinaryComparerEnum.DifferentSize, new List<DiffOffset>());
 
             Assert.AreEqual(actualResult.Item1, expectedResult.Item1);
             CollectionAssert.AreEquivalent(expectedResult.Item2.ToSimpleList(), actualResult.Item2.ToSimpleList());
@@ -40,8 +40,8 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Tests.Unit
             var rightBinary = new byte[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 };
 
             var actualResult = binaryComparer.Compare(leftBinary, rightBinary);
-            var expectedResult = new Tuple<BinaryComparerEnum, List<DiffOffsetModel>>(BinaryComparerEnum.EqualSize, new List<DiffOffsetModel>() {
-                    new DiffOffsetModel { StartIndex = 0, Length = 15 } }
+            var expectedResult = new Tuple<BinaryComparerEnum, List<DiffOffset>>(BinaryComparerEnum.EqualSize, new List<DiffOffset>() {
+                    new DiffOffset { StartIndex = 0, Length = 15 } }
 );
 
             Assert.AreEqual(actualResult.Item1, expectedResult.Item1);
@@ -60,7 +60,7 @@ namespace Waes.CodeAssignment.ScalableWeb.Api.Tests.Unit
             var rightBinary = leftBinary;
 
             var actualResult = binaryComparer.Compare(leftBinary, rightBinary);
-            var expectedResult = new Tuple<BinaryComparerEnum, List<DiffOffsetModel>>(BinaryComparerEnum.IdenticalBinary, new List<DiffOffsetModel>());
+            var expectedResult = new Tuple<BinaryComparerEnum, List<DiffOffset>>(BinaryComparerEnum.IdenticalBinary, new List<DiffOffset>());
 
             Assert.AreEqual(actualResult.Item1, expectedResult.Item1);
             CollectionAssert.AreEquivalent(expectedResult.Item2.ToSimpleList(), actualResult.Item2.ToSimpleList());
