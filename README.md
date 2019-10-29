@@ -15,20 +15,24 @@ into a Kubernetes Pod for simple and effective horizontal scalability.
 
 
 # How-to build:
+* Clone the solution repository
 * Open a console and go to the solution folder.
 * Enter "dotnet build".
 
 # How-to test:
+* Clone the solution repository
 * Open a console and go to the solution folder.
 * Enter "dotnet test" .
 
 # How-to run (Console):
+* Clone the solution repository
 * Open a console and go to the solution folder.
 * Enter "dotnet run".
 * To view all API's resources, open the browser and go to: https://localhost:5001/swagger  or http://localhost:5000/swagger.
 
 # How-to run (Docker):
 * You should have Docker installed in your system.
+* Clone the solution repository
 * Open a console and go to the solution folder.
 * Enter "docker build -t waes-api ." into the console.
 * Enter "docker run -d -p 60888:80 -p 44360:443 --name myapp waes-api" into the console.
